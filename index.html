@@ -14,21 +14,24 @@
         osc.start(0);
         gain.gain.linearRampToValueAtTime(1, 2);
         document.getElementById("pad").innerHTML = f+"Hz";
+        return false;
     }
     function oscplay(event) {
         const t = ctx.currentTime;
         const f = 2**((event.clientY / 100) + 1)*27.5;
         osc.frequency.linearRampToValueAtTime(f, t + 0.01);
         document.getElementById("pad").innerHTML = f+"Hz";
+        return false;
     }
     function oscend() {
         osc.stop();
         osc = undefined;
+        return false;
     }
 </script>
 
 <body>
-    <div id="pad" style="touch-action:none; position: absolute; left: 0; top: 0; height: 100vh; width:100vw; background-color:blue;">
+    <div id="pad" style="user-select: none; touch-action:none; position: absolute; left: 0; top: 0; height: 100vh; width:100vw; background-color:blue;">
     </div>
 </body>
 
