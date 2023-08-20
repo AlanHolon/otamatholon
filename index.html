@@ -18,7 +18,7 @@
     }
     function oscplay(event) {
         const t = ctx.currentTime;
-        const f = 2**((event.clientY / 100) + 1)*27.5;
+        const f = 100000/(document.getElementById("pad").offsetHeight + 1 - event.clientY);
         osc.frequency.linearRampToValueAtTime(f, t + 0.01);
         document.getElementById("pad").innerHTML = f+"Hz";
         return false;
