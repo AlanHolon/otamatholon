@@ -7,8 +7,12 @@
     let od = {};
     let g = {};
     let gm = {};
+    const vqp = 24*Math.PI;
+    function v(x) {
+        return 220 * l / (l - x * 7 / 8);        
+    }
     function fr(x) {
-        return 220 * l / (l - x * 7 / 8);
+        return v(x) - v(x)*Math.sin(vqp*Math.log2(v(x)/440))/vqp;
     }
     function mo(x) {
         return 5 * x / m;
