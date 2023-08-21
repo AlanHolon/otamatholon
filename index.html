@@ -55,11 +55,11 @@
     }
     function oscend(event) {
         const t = ctx.currentTime;
-        g[event.pointerId].gain.exponentialRampToValueAtTime(0.01, t + 0.5);
-        gm[event.pointerId].gain.exponentialRampToValueAtTime(0.01, t + 0.5);
-        o[event.pointerId].stop(t + 0.5);
-        os[event.pointerId].stop(t + 0.5);
-        od[event.pointerId].stop(t + 0.5);
+        g[event.pointerId].gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+        gm[event.pointerId].gain.exponentialRampToValueAtTime(0.01, t + 0.01);
+        o[event.pointerId].stop(t + 0.1);
+        os[event.pointerId].stop(t + 0.01);
+        od[event.pointerId].stop(t + 0.01);
         delete o[event.pointerId];
         delete os[event.pointerId];
         delete od[event.pointerId];
