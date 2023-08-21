@@ -2,7 +2,7 @@
     let ctx = new AudioContext();
     let osc;
     let gain;
-    let l;
+    var l;
     function oscinit(event) {
         let f = 2**((event.clientY / 100) + 1)*27.5;
         osc = ctx.createOscillator();
