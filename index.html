@@ -2,7 +2,7 @@
     let ctx = new AudioContext();
     let osc;
     let gain;
-    var l = 1000;
+   // var l = 1000;
     function oscinit(event) {
         let f = 2**((event.clientY / 100) + 1)*27.5;
         osc = ctx.createOscillator();
@@ -19,7 +19,7 @@
     }
     function oscplay(event) {
         const t = ctx.currentTime;
-        const f = 220 * l / (l - event.clientY * 3 / 4);
+        const f = 220 * 1000 / (1000 - event.clientY * 3 / 4);
         osc.frequency.linearRampToValueAtTime(f, t + 0.01);
         document.getElementById("pad").innerHTML = f+"Hz";
         return false;
@@ -37,7 +37,7 @@
 </body>
 
 <script>
-   l = document.getElementById("pad").offsetHeight;
+//   l = document.getElementById("pad").offsetHeight;
    document.getElementById("pad").onpointerdown = oscinit;
    document.getElementById("pad").onpointermove = oscplay;
    document.getElementById("pad").onpointerup = oscend;
