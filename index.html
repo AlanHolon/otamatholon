@@ -1,5 +1,6 @@
-<script>
+<script defer>
     let ctx = new AudioContext();
+    const l = document.getElementById("pad").offsetHeight;
     let osc;
     let gain;
     function oscinit(event) {
@@ -18,7 +19,7 @@
     }
     function oscplay(event) {
         const t = ctx.currentTime;
-        const f = 100000/(document.getElementById("pad").offsetHeight + 1 - event.clientY);
+        const f = 220 * l /(l - event.clientY*3/4);4);
         osc.frequency.linearRampToValueAtTime(f, t + 0.01);
         document.getElementById("pad").innerHTML = f+"Hz";
         return false;
