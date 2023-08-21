@@ -15,11 +15,11 @@
     }
     function oscinit(event) {
         const t = ctx.currentTime;
-        o[event.id] = ctx.createOscillator();
-        g[event.id] = ctx.createGain();
+        o[event.pointerId] = ctx.createOscillator();
+        g[event.pointerId] = ctx.createGain();
         const f = fr(event.clientY);
-        let osc = o[event.id];
-        let gain = g[event.id];
+        let osc = o[event.pointerId];
+        let gain = g[event.pointerId];
         osc.frequency.value = f;
         osc.type = "sine";
         gain.gain.value = 0.01;
@@ -28,43 +28,43 @@
         gain.gain.exponentialRampToValueAtTime(5, t + 0.02);
         osc.start();
         document.getElementById("pad").innerHTML = f+"Hz";
-        gm[event.id] = ctx.createGain();
-        gm[event.id].gain.value = 0.01;
-        gm[event.id].connect(ctx.destination);
-        os[event.id] = ctx.createOscillator();
-        os[event.id].type = "sine";
-        os[event.id].frequency.value = f - 10;
-        os[event.id].connect(gm[event.id]);
-        od[event.id] = ctx.createOscillator();
-        od[event.id].type = "sine";
-        od[event.id].frequency.value = f + 10;
-        od[event.id].connect(gm[event.id]);
-        os[event.id].start();
-        od[event.id].start();
+        gm[event.pointerId] = ctx.createGain();
+        gm[event.pointerId].gain.value = 0.01;
+        gm[event.pointerId].connect(ctx.destination);
+        os[event.pointerId] = ctx.createOscillator();
+        os[event.pointerId].type = "sine";
+        os[event.pointerId].frequency.value = f - 10;
+        os[event.pointerId].connect(gm[event.pointerId]);
+        od[event.pointerId] = ctx.createOscillator();
+        od[event.pointerId].type = "sine";
+        od[event.pointerId].frequency.value = f + 10;
+        od[event.pointerId].connect(gm[event.pointerId]);
+        os[event.pointerId].start();
+        od[event.pointerId].start();
         return false;
     }
     function oscplay(event) {
         const t = ctx.currentTime;
         const f = fr(event.clientY);
-        o[event.id].frequency.linearRampToValueAtTime(f, t + 0.01);
-        os[event.id].frequency.linearRampToValueAtTime(f - 10, t + 0.01);
-        od[event.id].frequency.linearRampToValueAtTime(f + 10, t + 0.01);
-        gm[event.id].gain.exponentialRampToValueAtTime(mo(event.clientX), t + 0.5);
+        o[event.pointerId].frequency.linearRampToValueAtTime(f, t + 0.01);
+        os[event.pointerId].frequency.linearRampToValueAtTime(f - 10, t + 0.01);
+        od[event.pointerId].frequency.linearRampToValueAtTime(f + 10, t + 0.01);
+        gm[event.pointerId].gain.exponentialRampToValueAtTime(mo(event.clientX), t + 0.5);
         document.getElementById("pad").innerHTML = f+"Hz";
         return false;
     }
     function oscend(event) {
         const t = ctx.currentTime;
-        g[event.id].gain.exponentialRampToValueAtTime(0.01, t + 0.5);
-        gm[event.id].gain.exponentialRampToValueAtTime(0.01, t + 0.5);
-        o[event.id].stop(t + 0.5);
-        os[event.id].stop(t + 0.5);
-        od[event.id].stop(t + 0.5);
-        delete o[event.id];
-        delete os[event.id];
-        delete od[event.id];
-        delete g[event.id];
-        delete gm[event.id];
+        g[event.pointerId].gain.exponentialRampToValueAtTime(0.01, t + 0.5);
+        gm[event.pointerId].gain.exponentialRampToValueAtTime(0.01, t + 0.5);
+        o[event.pointerId].stop(t + 0.5);
+        os[event.pointerId].stop(t + 0.5);
+        od[event.pointerId].stop(t + 0.5);
+        delete o[event.pointerId];
+        delete os[event.pointerId];
+        delete od[event.pointerId];
+        delete g[event.pointerId];
+        delete gm[event.pointerId];
         return false;
     }
 </script>
@@ -83,5 +83,6 @@
    document.getElementById("pad").onpointermove = oscplay;
    document.getElementById("pad").onpointerup = oscend;
    document.getElementById("pad").onpointerout = oscend;
+   document.getElementById("pad").onpointerleave = oscend;
    window.onresize = calc;
 </script>
