@@ -54,7 +54,7 @@
         os[event.pointerId].frequency.linearRampToValueAtTime(f - 10, t + 0.01);
         od[event.pointerId].frequency.linearRampToValueAtTime(f + 10, t + 0.01);
         gm[event.pointerId].gain.exponentialRampToValueAtTime(mo(event.clientX), t + 0.1);
-        document.getElementById("pad").innerHTML = f+"Hz";
+        document.getElementById("pad").innerHTML = f+"Hz ; " + document.getElementById("pad").offsetHeight + " " + window.innerHeight;
         return false;
     }
     function oscend(event) {
@@ -80,9 +80,10 @@
 
 <script>
    function calc() {
-       l = document.getElementById("pad").offsetHeight;
+       l = window.innerHeight;
    }
-   l = document.getElementById("pad").offsetHeight;
+   calc();
+//   l = document.getElementById("pad").offsetHeight;
    document.getElementById("pad").onpointerdown = oscinit;
    document.getElementById("pad").onpointermove = oscplay;
    document.getElementById("pad").onpointerup = oscend;
