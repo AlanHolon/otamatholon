@@ -74,17 +74,17 @@
 </script>
 
 <body>
-    <div id="pad" style="user-select: none; touch-action:none; position: absolute; left: 0; top: 0; height: 100vh; width:100vw; background-color:blue;">
+    <div id="pad" style="user-select: none; touch-action:none; position: absolute; left: 0; top: 0; height: 100vh; width:100vw; background-color:darkblue;">
     </div>
 </body>
 
 <script>
    function calc() {
        l = window.innerHeight;
+       m = window.innerWidth;
        document.getElementById("pad").style.height = l;
    }
    calc();
-//   l = document.getElementById("pad").offsetHeight;
    document.getElementById("pad").onpointerdown = oscinit;
    document.getElementById("pad").onpointermove = oscplay;
    document.getElementById("pad").onpointerup = oscend;
